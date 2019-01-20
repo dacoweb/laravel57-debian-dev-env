@@ -1,0 +1,39 @@
+version: "3.5"
+
+services:
+  nginx:
+    build:
+      context: ./.docker/nginx/
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src-code/:/var/www/html/
+    working_dir: /var/www/html/
+    networks:
+      - phpapp_ntw
+  php:    
+    build:
+      context: ./.docker/phpfpm/
+    environment:
+      XDEBUG_RHOST: php
+      XDEBUG_IDEKEY: VSCODE
+      PHP_ROOT_DIR: /usr/local/etc
+    volumes:
+      - ./src-code/:/var/www/html/
+    networks:
+      - phpapp_ntw
+  db:    
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: homestead
+      MYSQL_USER: homestead
+      MYSQL_PASSWORD: secret
+    volumes:      
+      - ./db-data/:/var/lib/mysql:rw
+      - ./dump-sql/:/dump-sql:rw 
+    networks:
+      - phpapp_ntw
+networks:
+    phpapp_ntw:
+      driver: bridge
