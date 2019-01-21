@@ -8,10 +8,18 @@
             "name": "Listen for XDebug",
             "type": "php",
             "request": "launch",
-            "port": 9100,
+            "port": 9200,
             "pathMappings": {
-                "/var/www/html": "${workspaceFolder}/src-code/"
+                "/var/www/html/application/": "${workspaceFolder}/src-code/application/"
             }
         },
+        {
+            "name": "Launch currently open script",
+            "type": "php",
+            "request": "launch",
+            "program": "${file}",
+            "cwd": "${fileDirname}",
+            "port": 9200
+        }
     ]
 }

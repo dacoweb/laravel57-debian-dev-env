@@ -4,7 +4,6 @@ ARG HOST_UID=1000
 ARG WEB_USER=www-data
 ARG WEB_GROUP=www-data
 ARG PHP_ROOT_DIR=/usr/local/etc/
-ARG XDEBUG_REMOTE_PORT=9100
 
 ENV XDEBUG="false"
 
@@ -75,5 +74,4 @@ RUN usermod -u ${HOST_UID} ${WEB_GROUP}
 
 RUN chown -R ${WEB_USER}:${WEB_GROUP} /var/www
 
-# Expose xdebug port ${XDEBUG_REMOTE_PORT}
-EXPOSE ${XDEBUG_REMOTE_PORT}
+RUN mkdir /var/www/logs/

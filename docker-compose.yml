@@ -15,11 +15,12 @@ services:
     build:
       context: ./.docker/phpfpm/
     environment:
-      XDEBUG_RHOST: php
+      XDEBUG_RPORT: 9200
       XDEBUG_IDEKEY: VSCODE
       PHP_ROOT_DIR: /usr/local/etc
     volumes:
       - ./src-code/:/var/www/html/
+      - ./logs/php/:/var/www/logs/:rw
     networks:
       - phpapp_ntw
   db:    

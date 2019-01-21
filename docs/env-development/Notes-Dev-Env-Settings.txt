@@ -1,0 +1,17 @@
+
+For error:
+Log opened at 2019-01-20 23:05:53
+I: Connecting to configured address/port: 192.168.3.104:9200.
+E: Time-out connecting to client (Waited: 200 ms). :-(
+Log closed at 2019-01-20 23:05:53
+
+Enable host firewall rules:
+# sudo ufw allow 9100:9200/tcp
+sudo ufw allow 9100/tcp
+sudo ufw allow 9200/tcp
+
+# some commands:
+sudo ufw status
+sudo ufw status numbered
+sudo ufw enable 
+sudo ufw disable
