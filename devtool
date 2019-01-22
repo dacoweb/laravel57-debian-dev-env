@@ -3,19 +3,15 @@
 if [ $# -gt 0 ]; then
     if [ "$1" == "artisan" ]; then
         shift 1
-        docker-compose exec \
-            php \
-            bash -c "cd application && php artisan $@"
+        docker-compose exec php php artisan $@
     elif [ "$1" == "composer" ]; then
         shift 1
-        docker-compose exec \
-            php \
-            bash -c "cd application && composer"
+        docker-compose exec php composer
     elif [ "$1" == "test" ]; then
         shift 1
-        docker-compose exec \
-            php \
-            bash -c "cd application && ./vendor/bin/phpunit $@"
+        docker-compose exec php ./vendor/bin/phpunit $@
+    elif [ "$1" == "rebuild" ]; then
+        docker-compose down && docker-compose build &&docker-compose up -d
     elif [ "$1" == "up" ]; then
         docker-compose up -d
     elif [ "$1" == "down" ]; then
@@ -30,4 +26,5 @@ else
     echo "./devtool up"
     echo "./devtool down"
     echo "./devtool build"
+    echo "./devtool rebuild"
 fi

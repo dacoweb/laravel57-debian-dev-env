@@ -72,6 +72,9 @@ COPY ./config/zz-www.conf ${PHP_ROOT_DIR}/php-fpm.d/zz-www.conf
 # Final permissions adjustments:
 RUN usermod -u ${HOST_UID} ${WEB_GROUP}
 
-RUN chown -R ${WEB_USER}:${WEB_GROUP} /var/www
+RUN chown -R ${WEB_USER}:${WEB_GROUP} /var/www \
+        && chmod g+s /var/www/html
 
 RUN mkdir /var/www/logs/
+
+USER ${HOST_UID}
