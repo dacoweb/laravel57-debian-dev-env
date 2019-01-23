@@ -15,3 +15,13 @@ sudo ufw status
 sudo ufw status numbered
 sudo ufw enable 
 sudo ufw disable
+
+
+# Installing PHP Code Standard Fixer:
+./devtool composer require --dev friendsofphp/php-cs-fixer
+
+# & vscode settings: https://github.com/junstyle/vscode-php-cs-fixer such: config file .php-cs (return PhpCsFixer\Config::create()...)
+
+# example:
+    "php-cs-fixer.config": "${workspaceRoot}/.vscode/.php_cs",
+    "php-cs-fixer.executablePath": "${extensionPath}/php-cs-fixer.phar",
