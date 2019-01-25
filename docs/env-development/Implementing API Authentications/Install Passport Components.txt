@@ -1,0 +1,8 @@
+# ************* Using Laravel Mix (FrontEnd components with Vue) ***************
+#1 Publish passport components from vendor into the RESTful api app:
+    php artisan vendor:publish --tag=passport-components
+    - remove Example.vue
+    - install dependencies (host computer no docker container): 
+    * npm install
+    * npm run dev
+    * npm run watch

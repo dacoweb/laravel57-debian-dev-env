@@ -1,0 +1,19 @@
+# ********* Using Refreshing token **********
+#1: Using password grant type to get an access_token.
+    PostMan: Post to: /oauth/token
+    -- grant_type=password
+    -- client_id=?
+    -- client_secret=?
+    -- username=?
+    -- password=?
+
+    Expected result: access_token &  refresh_token
+
+#2: On access_token expire... use refresh_token to retrieve a new access_token:
+    PostMan: Post to: /oauth/token
+    -- grant_type=refresh_token
+    -- client_id=?
+    -- client_secret=?
+    -- refresh_token=?
+
+    Expected result: access_token &  refresh_token

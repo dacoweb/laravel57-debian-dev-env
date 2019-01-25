@@ -1,0 +1,40 @@
+# ****** Implementing Authorization Code Grant Type **********
+
+#************** Register components to manage Clients Code Authorizations ***********
+* Make sure Passport Components is installed.
+
+#1: Register new component passport-clients:
+    Vue.component('passport-personal-clients', require('./components/passport/Clients.vue'));
+
+#2: Register new component passport-authorized-clients:
+    Vue.component('passport-authorized-clients', require('./components/passport/AuthorizedClients.vue'));
+
+#3: Recompile components. (npm run dev)
+
+#4: Register routes:
+    Route::get('/home/authorized-clients', 'HomeController@getAuthorizedClients')->name('authorized-clients');
+    Route::get('/home/my-clients', 'HomeController@getClients')->name('personal-clients');
+
+#5: Add methods to HomeController:
+    getAuthorizedClients: return view('home.authorized-clients')
+    getClients: return view('home.personal-clients')
+
+#6: duplicate/create views & add components tags.   Add routes url to layout.
+
+#7 ./devtool artisan passport:client
+    Client ID: 1
+    Client secret: JiM0xwkeVkqN3s87dGZD93kfUBFPuReRYFYlrRxV
+
+#8: Get authorization code to obtain access_token... by accessing the following url (with response_type=code):
+    url: .../oauth/authorize?client_id=1&redirect_uri=http://localhost&response_type=code
+    
+    Result: redirected to provided redirect_uri with (encoded) code on query set.
+
+    #2: PostMan: Post to: /oauth/token
+    -- grant_type=authorization_code
+    -- client_id=?
+    -- client_secret=?
+    -- redirect_uri=http://localhost
+    -- code= (decoded code)
+
+    Result: access_token

@@ -1,0 +1,8 @@
+# ****** Implementing Implicit grant type *****************
+#1: Add on AuthServiceProvider: 
+    Passport::enableImplicitGrant();
+
+#2: Access to url: 
+    url: .../oauth/authorize?client_id=1&redirect_uri=http://localhost&response_type=token
+
+#3: Authorize button action to get the access_token

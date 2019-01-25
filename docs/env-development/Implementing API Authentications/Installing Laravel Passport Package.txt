@@ -1,0 +1,29 @@
+API Authentication (Passport)
+https://laravel.com/docs/5.7/passport
+
+
+#1 Install Laravel Passport
+    $ composer require laravel/passport
+
+#2 Run Passport migrations:
+    $ php artisan migrate
+
+#3 Install & Generate Application Keys (Encrypted keys to generate access tokens)
+    $ php artisan passport:install
+
+#4 Register Api Tokens into User model:
+    Add trait HasApiTokens to User
+
+#5 Register passport routes, inside of AuthServiceProvider boot method: 
+    Passport::routes();
+
+# **Discard** 6 verify artisan routes:list & set oauth tokens to be under api routes group:
+    Route::post('oauth/token', '\Laravel\Passport\Http\Controllers\AccessTokenController@issuesToken');
+
+#7 Set Auth Token Guards api driver to passport.
+    driver: 'passport',
+
+#8 Setting Passport routes & tokens expiration or lifetimes (inside of AuthServiceProvider boot method):
+    Passport::routes();
+    Passport::tokensExpireIn(Carbon::now()->addMinutes(30));
+    Passport::refreshTokensExpireIn(Carbon::now()->addDays(30));
